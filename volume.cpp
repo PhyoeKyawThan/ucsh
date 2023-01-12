@@ -19,9 +19,9 @@ int  main()
 {
     float o_height, o_length, o_width;
     Distance d1, d2, d3;
-    d1 = {16, 3.5};
-    d2 = {12, 6.25};
-    d3 = {8, 1.75};
+    d1 = {2, 39.7};
+    d2 = {7, 8.3};
+    d3 = {9, 6.3};
     Volume volume = {d1, d2, d3};
 
     o_height = volume.height.feets + volume.height.inches/12;
