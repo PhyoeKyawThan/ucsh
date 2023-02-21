@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	int N;
+	cout<< "Enter amount of characters: ";
+	cin>> N;
+	
+	char MyArray[N];
+	
+	for(int i = 0; i < N; i++){
+		cout<< "Enter characters: ";
+		cin>> MyArray[i];
+	}
+	
+	int vowels_count = 0;
+	char vowels[5] = {'a', 'e', 'y', 'o', 'u'};
+	char white_space = ' ';
+	char digits[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+	for(int i = 0; i < 5; i++) cout<< vowels[i];
+	cout << vowels_count;
+	return 0;
+}
