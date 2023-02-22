@@ -1,0 +1,290 @@
+Chapter - 5 
+Quest with answers
+
+**No.1
+	Refer to the CIRCAREA program in Chapter 2, “C++ Programming Basics.” Write a func-
+	tion called circarea() that finds the area of a circle in a similar way. It should take an
+	argument of type float and return an argument of the same type. Write a main() func-
+	tion that gets a radius value from the user, calls circarea() , and displays the result.
+	
+ans: 
+//start No.1
+#include <iostream>
+#define PI 3.14
+using namespace std;
+
+float circarea(float radius)
+{
+    return PI*radius*radius;
+}
+
+int main()
+{
+    float radius;
+    cout<< "Enter radius to calculate the value of Circle: ";
+    cin>> radius;
+    
+    cout<< "Area = " << circarea(radius) << endl;
+    return 0;
+}
+//end No.1
+
+-----------------------------------------------------------------------------------------------------------
+
+**No.2
+	Raising a number n to a power p is the same as multiplying n by itself p times. Write a
+	function called power() that takes a double value for n and an int value for p , and
+	returns the result as a double value. Use a default argument of 2 for p , so that if this
+	argument is omitted, the number n will be squared. Write a main() function that gets val-
+	ues from the user to test this function.
+	
+ans:
+//start No.2
+
+#include <iostream>
+
+using namespace std;
+
+double power(double n,int p){
+    double result = 0;
+    for(int i = 0; i < p; i++){
+        result = n*n;
+    }
+    return result;
+}
+int main()
+{
+    double n;
+    cout<< "Enter a number: ";
+    cin>> n;
+    
+    cout<< "Square of " << n << " is " << power(n, 2) << endl; //in question default valaue of p should be 2, be care of reading the question in exam lovely
+    
+    return 0;
+}
+//end No.2
+
+-----------------------------------------------------------------------------------------------------------
+
+**No.3
+	Write a function called zeroSmaller() that is passed two int arguments by reference
+	and then sets the smaller of the two numbers to 0. Write a main() program to exercise
+	this function.
+
+ans:
+//start No.3
+
+#include <iostream>
+
+using namespace std;
+
+void zeroSmaller(int &first, int &sec){
+    if(first > sec) sec = 0;
+    else first = 0;
+}
+int main()
+{
+    int a, b;
+    cout<< "Enter first number: ";
+    cin>> a;
+    
+    cout<< "Enter sec number: ";
+    cin>> b;
+    
+    zeroSmaller(a, b);
+    
+    cout<< "After call the function\nfirst: " << a << endl << "sec: " << b << endl;
+    return 0;
+}
+
+//end No.3
+
+-----------------------------------------------------------------------------------------------------------
+**No.4
+	Write a function that takes two Distance values as arguments and returns the larger one.
+	Include a main() program that accepts two Distance values from the user, compares
+	them, and displays the larger. (See the RETSTRC program for hints.)
+	
+ans: 
+//start No.4
+
+#include <iostream>
+
+using namespace std;
+
+int distance(int first, int sec){
+    if(first > sec) return first;
+    else return sec;
+}
+int main()
+{
+    int a, b;
+    cout<< "Enter first distance value: ";
+    cin>> a;
+    
+    cout<< "Enter sec distance value: ";
+    cin>> b;
+    
+    cout<< "The largest distance is "<< distance(a, b) << endl;
+    return 0;
+}
+
+//end No.4
+
+-----------------------------------------------------------------------------------------------------------
+
+**No.5
+	Write a function called hms_to_secs() that takes three int values—for hours, minutes,
+	and seconds—as arguments, and returns the equivalent time in seconds (type long ).
+	Create a program that exercises this function by repeatedly obtaining a time value in
+	hours, minutes, and seconds from the user (format 12:59:59), calling the function, and
+	displaying the value of seconds it returns.
+
+ans:
+//start No.5
+
+#include <iostream>
+
+using namespace std;
+long hms_to_secs(int hr, int minutes, int seconds){
+    return hr*3600+minutes*60+seconds;
+}
+int main() {
+    int hr, min, sec;
+    char sign;
+    cout<< "Enter hour:min:sec -> ";
+    cin>> hr >> sign >> min >> sign >> sec;
+    
+    cout<< hr << sign << min << sec << " = " << hms_to_secs(hr, min, sec) << " seconds.\n";
+    return 0;
+}
+
+//end No.5
+-----------------------------------------------------------------------------------------------------------
+
+**No.6
+	Start with the program from Exercise 11 in Chapter 4, “Structures,” which adds two
+	struct time values. Keep the same functionality, but modify the program so that it uses
+	two functions. The first, time_to_secs() , takes as its only argument a structure of type time ,
+	and returns the equivalent in seconds (type long ). The second function,
+	takes as its only argument a time in seconds (type long ), and returns a
+	structure of type time .
+
+ans:
+//start No.6
+
+#include <iostream>
+
+using namespace std;
+
+struct tim_e{
+  int hr;
+  int min;
+  int sec;
+};
+
+long time_to_secs(tim_e first_time){
+    return first_time.hr*3600+first_time.min*60+first_time.sec;
+}
+
+tim_e secs_to_time(long seconds){
+    tim_e sec_time;
+    sec_time.hr = seconds/3600;
+    sec_time.min = seconds%3600/60;
+    sec_time.sec = seconds%3600%60;
+    return sec_time;
+}
+int main() {
+    tim_e inp_time;
+    char sign;
+    cout<< "Enter time in format (hh:mm:ss): ";
+    cin>> inp_time.hr >> sign >> inp_time.min >> sign >> inp_time.sec;
+    
+    int seconds = time_to_secs(inp_time);
+    cout<< inp_time.hr << sign << inp_time.min << sign << inp_time.sec << " = " << seconds << 's'<< endl;
+    cout<< seconds << "s = " << secs_to_time(seconds).hr << sign << secs_to_time(seconds).min << sign << secs_to_time(seconds).sec << endl; 
+    
+    return 0;
+}
+
+//end No.6
+-----------------------------------------------------------------------------------------------------------
+
+**No.7
+	Start with the power() function of Exercise 2, which works only with type double .
+	Create a series of overloaded functions with the same name that, in addition to double ,
+	also work with types char , int , long , and float . Write a main() program that exercises
+	these overloaded functions with all argument types.
+
+ans:
+//start No.7
+
+#include <iostream>
+
+using namespace std;
+
+double power(double n,int p){
+    double result = 0;
+    for(int i = 0; i < p; i++){
+        result = n*n;
+    }
+    return result;
+}
+
+char power(char txt, int p)
+{
+    for(int i = 0; i < p-1; i++){
+        cout<< txt;
+    }
+    return txt;
+}
+
+int power(int n, int p){
+    int result = 0;
+    for(int i = 0; i < p; i++){
+        result = n*n;
+    }
+    return result;
+}
+
+long power(long n, int p){
+    long result = 0;
+    for(int i = 0; i < p; i++){
+        result = n*n;
+    }
+    return result;
+}
+
+float power(float n, int p){
+    float result = 0;
+    for(int i = 0; i < p; i++){
+        result = n*n;
+    }
+    return result;
+}
+
+
+int main()
+{
+    double number_double = 5;
+    char character = 'a';
+    int num_int = 4;
+    long num_long = 67;
+    float num_float = 34.6;
+    cout<< "double type of power function - " << power(number_double, 2) << endl;
+    cout<< "Char type of power function - " << power(character, 2) << endl;
+    cout<< "Int type of power function - " << power(num_int, 2) << endl;
+    cout<< "Long type of power function - " << power(num_long, 2) << endl;
+    cout<< "Float type of power function - " << power(num_float, 2) << endl;
+    return 0;
+}
+
+//end No.7
+
+-----------------------------------------------------------------------------------------------------------
+
+**No.8
+	Write a function called swap() that interchanges two int values passed to it by the call-
+	ing program. (Note that this function swaps the values of the variables in the calling pro-
+	gram, not those in the function.) You’ll need to decide how to pass the arguments. Create
+	a main() program to exercise the function.
